@@ -14,20 +14,13 @@ public class StatusmachineApplication implements CommandLineRunner {
     }
 
     @Autowired
-    private StateMachine<TurnstileStates, TurnstileEvents> stateMachine;
+    private StateMachine<States, Events> stateMachine;
 
     @Override
-    public void run(String... strings) throws Exception {
+    public void run(String... args) throws Exception {
         stateMachine.start();
-        System.out.println("--- coin ---");
-        stateMachine.sendEvent(TurnstileEvents.COIN);
-        System.out.println("--- coin ---");
-        stateMachine.sendEvent(TurnstileEvents.COIN);
-        System.out.println("--- push ---");
-        stateMachine.sendEvent(TurnstileEvents.PUSH);
-        System.out.println("--- push ---");
-        stateMachine.sendEvent(TurnstileEvents.PUSH);
-        stateMachine.stop();
+        stateMachine.sendEvent(Events.PAY);
+        stateMachine.sendEvent(Events.RECEIVE);
     }
 
 }
